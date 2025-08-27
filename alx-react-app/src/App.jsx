@@ -6,10 +6,10 @@ import Footer from './Footer';
 function App() {
     return (
         <div>
-              < WelcomeMessage />
               < Header />
               < MainContent />
               <Footer />
+            <WelcomeMessage />
                   </div>
                     );
                     }
