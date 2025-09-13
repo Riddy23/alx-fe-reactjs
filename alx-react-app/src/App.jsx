@@ -7,9 +7,10 @@ import WelcomeMessage from './components/WelcomeMessage';
 function App() {
     return (
         <div>
-              < Header />
-              < MainContent />
-              <Footer />
+            
+            < Header />
+            < MainContent />
+            <Footer />
             <WelcomeMessage />
                   </div>
                     );
