@@ -2,15 +2,30 @@ import React, { useState } from "react";
 import { searchUsers } from "../services/githubService";
 
 const Search = () => {
-  const [username, setUsername] = useState("");
-    const [location, setLocation] = useState("");
-      const [minRepos, setMinRepos] = useState("");
-        const [results, setResults] = useState([]);
+const [username, setUsername] = useState("");
+const [location, setLocation] = useState("");
+const [minRepos, setMinRepos] = useState("");
+const [results, setResults] = useState([]);
           const [loading, setLoading] = useState(false);
             const [error, setError] = useState("");
 
+
+ const fetchUserData = async () => {
+          setLoading(true);
+              setError("");
+                  try {
+                        const users = await searchUsers({ username, location, minRepos });
+                              setResults(users);
+                                  } catch (err) {
+                                        setError("Failed to fetch users. Please try again.");
+                                            } finally {
+                                                  setLoading(false);
+                                                      }
+                                                        };
+ }           
               const handleSearch = async (e) => {
                   e.preventDefault();
+                  fetchUserData();
                       setLoading(true);
                           setError("");
                               try {
@@ -93,7 +108,6 @@ const Search = () => {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   )}
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       </div>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         );
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        };
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        export default Search;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        export default Search                                                                                        
