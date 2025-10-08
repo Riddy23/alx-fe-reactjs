@@ -3,19 +3,39 @@
           "id": 1,
               "title": "Spaghetti Carbonara",
                   "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-                      "image": "https://via.placeholder.com/300x200"
-                        },
-                          {
-                              "id": 2,
-                                  "title": "Chicken Tikka Masala",
-                                      "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato-based gravy.",
-                                          "image": "https://via.placeholder.com/300x200"
-                                            },
-                                              {
-                                                  "id": 3,
-                                                      "title": "Vegetable Stir Fry",
-                                                          "summary": "Quick and healthy stir-fried vegetables with soy sauce and garlic.",
-                                                              "image": "https://via.placeholder.com/300x200"
-                                                                }
-                                                                ]
+                      "image": "https://via.placeholder.com/300x200",
+                          "ingredients": [
+                                "Spaghetti pasta",
+                                      "Eggs",
+                                            "Parmesan cheese",
+                                                  "Bacon",
+                                                        "Black pepper"
+                                                            ],
+                                                                "instructions": [
+                                                                      "Boil spaghetti until al dente.",
+                                                                            "Cook bacon until crispy.",
+                                                                                  "Whisk eggs with cheese and pepper.",
+                                                                                        "Combine everything while pasta is hot."
+                                                                                            ]
+                                                                                              },
+                                                                                                {
+                                                                                                    "id": 2,
+                                                                                                        "title": "Chicken Tikka Masala",
+                                                                                                            "summary": "Chunks of grilled chicken cooked in a buttery and creamy tomato sauce.",
+                                                                                                                "image": "https://via.placeholder.com/300x200",
+                                                                                                                    "ingredients": [
+                                                                                                                          "Chicken breast",
+                                                                                                                                "Yogurt",
+                                                                                                                                      "Tomato puree",
+                                                                                                                                            "Cream",
+                                                                                                                                                  "Spices"
+                                                                                                                                                      ],
+                                                                                                                                                          "instructions": [
+                                                                                                                                                                "Marinate chicken in yogurt and spices.",
+                                                                                                                                                                      "Grill chicken pieces.",
+                                                                                                                                                                            "Prepare sauce with tomato and cream.",
+                                                                                                                                                                                  "Mix grilled chicken with sauce and simmer."
+                                                                                                                                                                                      ]
+                                                                                                                                                                                        }
+                                                                                                                                                                                        ]
 

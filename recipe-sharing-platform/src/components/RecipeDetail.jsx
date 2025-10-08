@@ -1,53 +1,72 @@
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { recipes } from "../data/recipes";
+import recipesData from "../data.json";
 
 export default function RecipeDetail() {
   const { id } = useParams();
-    const recipe = recipes.find((r) => r.id === parseInt(id));
+    const [recipe, setRecipe] = useState(null);
 
-      if (!recipe) {
-          return (
-                <div className="flex flex-col items-center justify-center h-screen">
-                        <h2 className="text-2xl font-semibold text-red-600">
-                                  Recipe not found 😢
-                                          </h2>
-                                                  <Link
-                                                            to="/"
-                                                                      className="mt-4 text-blue-600 hover:underline font-medium"
-                                                                              >
-                                                                                        Back to Home
-                                                                                                </Link>
-                                                                                                      </div>
-                                                                                                          );
-                                                                                                            }
+      useEffect(() => {
+          // Load recipe from data.json using the ID from params
+              const foundRecipe = recipesData.find((r) => r.id === parseInt(id));
+                  setRecipe(foundRecipe);
+                    }, [id]);
 
-                                                                                                              return (
-                                                                                                                  <div className="min-h-screen bg-gray-100 p-8">
-                                                                                                                        <Link to="/" className="text-blue-600 hover:underline font-medium">
-                                                                                                                                ← Back to Recipes
-                                                                                                                                      </Link>
+                      if (!recipe) {
+                          return (
+                                <div className="flex flex-col items-center justify-center h-screen">
+                                        <h2 className="text-2xl font-semibold text-red-600">
+                                                  Recipe not found 😢
+                                                          </h2>
+                                                                  <Link to="/" className="mt-4 text-blue-600 hover:underline font-medium">
+                                                                            Back to Home
+                                                                                    </Link>
+                                                                                          </div>
+                                                                                              );
+                                                                                                }
 
-                                                                                                                                            <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md mt-8 overflow-hidden">
-                                                                                                                                                    <img
-                                                                                                                                                              src={recipe.image}
-                                                                                                                                                                        alt={recipe.title}
-                                                                                                                                                                                  className="w-full h-64 object-cover"
-                                                                                                                                                                                          />
-                                                                                                                                                                                                  <div className="p-6">
-                                                                                                                                                                                                            <h1 className="text-3xl font-bold text-gray-800 mb-4">
-                                                                                                                                                                                                                        {recipe.title}
-                                                                                                                                                                                                                                  </h1>
-                                                                                                                                                                                                                                            <p className="text-gray-700 mb-6">{recipe.description}</p>
+                                                                                                  return (
+                                                                                                      <div className="min-h-screen bg-gray-100 p-8">
+                                                                                                            <Link to="/" className="text-blue-600 hover:underline font-medium">
+                                                                                                                    ← Back to Recipes
+                                                                                                                          </Link>
 
-                                                                                                                                                                                                                                                      <h3 className="text-xl font-semibold mb-2">Ingredients:</h3>
-                                                                                                                                                                                                                                                                <ul className="list-disc list-inside text-gray-600">
-                                                                                                                                                                                                                                                                            <li>Ingredient 1</li>
-                                                                                                                                                                                                                                                                                        <li>Ingredient 2</li>
-                                                                                                                                                                                                                                                                                                    <li>Ingredient 3</li>
-                                                                                                                                                                                                                                                                                                              </ul>
-                                                                                                                                                                                                                                                                                                                      </div>
-                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                  );
-                                                                                                                                                                                                                                                                                                                                  }
-                                                                                                                                                                                                                                                                                                                                  
+                                                                                                                                <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md mt-8 overflow-hidden">
+                                                                                                                                        <img
+                                                                                                                                                  src={recipe.image}
+                                                                                                                                                            alt={recipe.title}
+                                                                                                                                                                      className="w-full h-64 object-cover"
+                                                                                                                                                                              />
+                                                                                                                                                                                      <div className="p-6">
+                                                                                                                                                                                                <h1 className="text-3xl font-bold text-gray-800 mb-4">
+                                                                                                                                                                                                            {recipe.title}
+                                                                                                                                                                                                                      </h1>
+                                                                                                                                                                                                                                <p className="text-gray-700 mb-6">{recipe.summary}</p>
+
+                                                                                                                                                                                                                                          <h3 className="text-xl font-semibold mb-2">Ingredients:</h3>
+                                                                                                                                                                                                                                                    <ul className="list-disc list-inside text-gray-600 mb-6">
+                                                                                                                                                                                                                                                                {recipe.ingredients && recipe.ingredients.length > 0 ? (
+                                                                                                                                                                                                                                                                              recipe.ingredients.map((ingredient, index) => (
+                                                                                                                                                                                                                                                                                              <li key={index}>{ingredient}</li>
+                                                                                                                                                                                                                                                                                                            ))
+                                                                                                                                                                                                                                                                                                                        ) : (
+                                                                                                                                                                                                                                                                                                                                      <li>No ingredients listed.</li>
+                                                                                                                                                                                                                                                                                                                                                  )}
+                                                                                                                                                                                                                                                                                                                                                            </ul>
+
+                                                                                                                                                                                                                                                                                                                                                                      <h3 className="text-xl font-semibold mb-2">Instructions:</h3>
+                                                                                                                                                                                                                                                                                                                                                                                <ol className="list-decimal list-inside text-gray-600">
+                                                                                                                                                                                                                                                                                                                                                                                            {recipe.instructions && recipe.instructions.length > 0 ? (
+                                                                                                                                                                                                                                                                                                                                                                                                          recipe.instructions.map((step, index) => (
+                                                                                                                                                                                                                                                                                                                                                                                                                          <li key={index}>{step}</li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                        ))
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    ) : (
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <li>No instructions provided.</li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                              )}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ol>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            );
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
