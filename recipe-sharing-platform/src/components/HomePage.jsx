@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { recipes } from "../data/recipes";
+import recipes from "../data.json"; // ✅ Import mock data from data.json
 
 export default function HomePage() {
   return (
@@ -32,7 +32,7 @@ export default function HomePage() {
                                                                                                                                                                                                                                                                     <h2 className="text-2xl font-semibold text-gray-800 mb-2">
                                                                                                                                                                                                                                                                                     {recipe.title}
                                                                                                                                                                                                                                                                                                   </h2>
-                                                                                                                                                                                                                                                                                                                <p className="text-gray-600">{recipe.description}</p>
+                                                                                                                                                                                                                                                                                                                <p className="text-gray-600">{recipe.summary}</p>
                                                                                                                                                                                                                                                                                                                             </div>
                                                                                                                                                                                                                                                                                                                                       </Link>
                                                                                                                                                                                                                                                                                                                                               ))}
