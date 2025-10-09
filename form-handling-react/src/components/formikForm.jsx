@@ -7,7 +7,7 @@ const validationSchema = Yup.object({
       password: Yup.string().min(6, "Minimum 6 chars").required("Password is required"),
       });
 
-      export default function FormikForm() {
+      export default function formikForm() {
         return (
             <div className="max-w-md mx-auto mt-10 p-6 border rounded-md shadow-md bg-white">
                   <h2 className="text-2xl font-bold mb-4 text-center">Register with Formik</h2>
