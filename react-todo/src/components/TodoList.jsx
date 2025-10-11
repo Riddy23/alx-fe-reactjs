@@ -1,51 +1,44 @@
 import { useState } from "react";
 
 export default function TodoList() {
-  const [todos, setTodos] = useState([
-      { id: 1, text: "Learn React", completed: false },
-          { id: 2, text: "Build a project", completed: true },
-            ]);
-              const [newTodo, setNewTodo] = useState("");
+  const [todos, setTodos] = useState([]);
+    const [newTodo, setNewTodo] = useState("");
 
-                const addTodo = () => {
-                    if (!newTodo.trim()) return;
-                        setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
-                            setNewTodo("");
-                              };
+      const handleAddTodo = () => {
+          if (newTodo.trim() !== "") {
+                setTodos([...todos, newTodo]);
+                      setNewTodo("");
+                          }
+                            };
 
-                                const toggleTodo = (id) =>
-                                    setTodos(
-                                          todos.map((todo) =>
-                                                  todo.id === id ? { ...todo, completed: !todo.completed } : todo
-                                                        )
-                                                            );
+                              const handleDeleteTodo = (index) => {
+                                  setTodos(todos.filter((_, i) => i !== index));
+                                    };
 
-                                                              const deleteTodo = (id) => setTodos(todos.filter((todo) => todo.id !== id));
-
-                                                                return (
-                                                                    <div>
-                                                                          <h2>Todo List</h2>
-                                                                                <input
-                                                                                        value={newTodo}
-                                                                                                onChange={(e) => setNewTodo(e.target.value)}
-                                                                                                        placeholder="Add new todo"
-                                                                                                              />
-                                                                                                                    <button onClick={addTodo}>Add</button>
-                                                                                                                          <ul>
-                                                                                                                                  {todos.map((todo) => (
-                                                                                                                                            <li
-                                                                                                                                                        key={todo.id}
-                                                                                                                                                                    onClick={() => toggleTodo(todo.id)}
-                                                                                                                                                                                style={{ textDecoration: todo.completed ? "line-through" : "none" }}
-                                                                                                                                                                                          >
-                                                                                                                                                                                                      {todo.text}
-                                                                                                                                                                                                                  <button onClick={(e) => { e.stopPropagation(); deleteTodo(todo.id); }}>
-                                                                                                                                                                                                                                Delete
-                                                                                                                                                                                                                                            </button>
-                                                                                                                                                                                                                                                      </li>
-                                                                                                                                                                                                                                                              ))}
-                                                                                                                                                                                                                                                                    </ul>
-                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                          );
-                                                                                                                                                                                                                                                                          }
-                                                                                                                                                                                                                                                                          
+                                      return (
+                                          <div>
+                                                <h2>Todo List</h2>
+                                                      <input
+                                                              type="text"
+                                                                      placeholder="Add new todo"
+                                                                              value={newTodo}
+                                                                                      onChange={(e) => setNewTodo(e.target.value)}
+                                                                                              data-testid="todo-input"
+                                                                                                    />
+                                                                                                          <button onClick={handleAddTodo} data-testid="add-btn">
+                                                                                                                  Add Todo
+                                                                                                                        </button>
+                                                                                                                              <ul data-testid="todo-list">
+                                                                                                                                      {todos.map((todo, index) => (
+                                                                                                                                                <li key={index}>
+                                                                                                                                                            {todo}
+                                                                                                                                                                        <button onClick={() => handleDeleteTodo(index)} data-testid="delete-btn">
+                                                                                                                                                                                      Delete
+                                                                                                                                                                                                  </button>
+                                                                                                                                                                                                            </li>
+                                                                                                                                                                                                                    ))}
+                                                                                                                                                                                                                          </ul>
+                                                                                                                                                                                                                              </div>
+                                                                                                                                                                                                                                );
+                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                
